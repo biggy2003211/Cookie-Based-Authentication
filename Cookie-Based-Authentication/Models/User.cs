@@ -14,6 +14,6 @@ namespace Cookie_Based_Authentication.Models
         //名稱
         public string UserName { get; set; }
         //身分
-        public Identity Identity { get; set; }
+        public string roles { get; set; }
     }
 }

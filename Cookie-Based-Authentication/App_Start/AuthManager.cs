@@ -15,20 +15,21 @@ namespace Cookie_Based_Authentication.App_Start
         {
             //新增表單驗證用的票證
             var ticket = new FormsAuthenticationTicket(
-                //版本
-                1,   
-                //使用者名稱
-                user.UserName,
-                //發行時間
-                DateTime.Now,
-                //有效期限
-                DateTime.Now.AddMinutes(60),
-                //是否將 Cookie 設定成 Session Cookie，如果是則會在瀏覽器關閉後移除
-                false,
-                //將要記錄的使用者資訊轉換為 JSON 字串
-                JsonConvert.SerializeObject(user),
-                //儲存 Cookie 的路徑
-                FormsAuthentication.FormsCookiePath);
+               //版本
+               version: 1,
+               //使用者名稱
+               name: user.UserName,
+               //發行時間
+               issueDate: DateTime.Now,
+               //Cookie有效時間=現在時間往後+30分鐘
+               expiration: DateTime.Now.AddMinutes(30),
+               //是否將 Cookie 設定成 Session Cookie，如果是則會在瀏覽器關閉後移除 
+               //true or false
+               isPersistent: false,
+               //將要記錄的使用者資訊轉換為 JSON 字串
+               userData: JsonConvert.SerializeObject(user),
+               //儲存 Cookie 的路徑
+               cookiePath: FormsAuthentication.FormsCookiePath);
 
             //將 Ticket 加密
             var encTicket = FormsAuthentication.Encrypt(ticket);
