@@ -8,7 +8,7 @@ namespace Cookie_Based_Authentication.Models
     public class User
     {
         //流水號
-        public int Id { get; set; }
+        public string Id { get; set; }
         //帳號
         public string UserId { get; set; }
         //名稱

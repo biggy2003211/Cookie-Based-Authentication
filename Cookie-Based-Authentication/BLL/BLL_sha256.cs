@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Cookie_Based_Authentication.BLL
 {
-    public class sha256
+    public class BLL_sha256
     {
         /// <summary>
         /// 使用 sha256 雜湊加密

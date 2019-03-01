@@ -16,7 +16,7 @@ namespace Cookie_Based_Authentication.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("verification")]
-        [Authorize(Roles = "board_admin")]
+        [Authorize(Roles = "admin")]
         public string verification()
         {
             return "value";

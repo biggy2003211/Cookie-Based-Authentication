@@ -32,24 +32,27 @@ namespace Cookie_Based_Authentication.Controllers
         public void SignIn(SignInViewModel model)
         {
             // 使用 sha256 雜湊加密
-            sha256 _sha256 = new sha256();
+            BLL_sha256 _sha256 = new BLL_sha256();
             model.Password = _sha256.Encryption_sha256(model.Password);
 
-            // 未雜湊加密前明碼: 123
-            if (ValidateLogin(model))
+            List<User> _User = CheckLogin(model);
+            string roles = string.Empty;
+
+            if ( _User.Count == 0)
             {
-                var user = new User
-                {
-                    Id = 1,
-                    UserId = "abc",
-                    UserName = "小明",
-                    roles = userData
-                };
-                _authManager.SignIn(user);
+                throw new Exception("登入失敗，帳號或密碼錯誤");
             }
             else
             {
-                throw new Exception("登入失敗，帳號或密碼錯誤");
+                roles = string.Join(",", _User.Select(c=>c.roles));
+                var user = new User
+                {
+                    Id = _User.Select(c => c.Id).First(),
+                    UserId = _User.Select(c => c.UserId).First(),
+                    UserName = _User.Select(c => c.UserName).First(),
+                    roles = roles
+                };
+                _authManager.SignIn(user);
             }
         }
 
@@ -82,22 +85,18 @@ namespace Cookie_Based_Authentication.Controllers
         }
 
         /// <summary>
-        /// 驗證使用者帳號密碼是否正確
+        /// 檢查使用者帳號密碼是否正確
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns></returns>
-        private bool ValidateLogin(SignInViewModel model)
+        private List<User> CheckLogin(SignInViewModel model)
         {
+
+            BLL_AccountManagement _BLL_AccountManagement = new BLL_AccountManagement();
             // 驗證
-            if (!(model.UserId == "abc" && model.Password == "pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM="))
-            {
-                return false;
-            }
+            List <User> _User = _BLL_AccountManagement.SignIn(model);
 
-            // 授權：設定角色到 userData 
-            userData = "gold_member,board_admin";
-
-            return true;
+            return _User;
         }
     }
 }
