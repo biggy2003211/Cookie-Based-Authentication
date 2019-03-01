@@ -23,7 +23,7 @@ namespace Cookie_Based_Authentication.Controllers
         string userData = "";
 
         /// <summary>
-        /// 登入
+        /// 登入，伺服器將加密後帶有使用者資訊的 Cookie 寫回瀏覽器
         /// </summary>
         /// <param name="model">The model.</param>
         /// <exception cref="System.Exception">登入失敗，帳號或密碼錯誤</exception>
@@ -54,7 +54,7 @@ namespace Cookie_Based_Authentication.Controllers
         }
 
         /// <summary>
-        /// 登出
+        /// 登出，移除瀏覽器的表單驗證
         /// </summary>
         [HttpPost]
         [Route("signOut")]
@@ -82,7 +82,7 @@ namespace Cookie_Based_Authentication.Controllers
         }
 
         /// <summary>
-        /// 驗證使用者是否登入成功
+        /// 驗證使用者帳號密碼是否正確
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns></returns>

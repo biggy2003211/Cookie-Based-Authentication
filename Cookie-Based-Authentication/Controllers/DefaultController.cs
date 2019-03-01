@@ -10,6 +10,10 @@ namespace Cookie_Based_Authentication.Controllers
     [RoutePrefix("api/Default")]
     public class DefaultController : ApiController
     {
+        /// <summary>
+        /// 用於驗證有無實現權限控管機制
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("verification")]
         [Authorize(Roles = "board_admin")]
