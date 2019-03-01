@@ -1,5 +1,4 @@
 # Cookie-Based-Authentication
-Cookie-Based-Authentication
 使用 ASP.NET WEP API2 架構，基於 Cookie-Based-Authentication 上實現多角色權限驗證功能 。
 
 【參考文章】
