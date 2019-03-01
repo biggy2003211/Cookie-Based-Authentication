@@ -7,6 +7,9 @@
 
 自定義 AuthorizeAttribute 屬性以便將 Enums 型態資料當參數傳入。
 
+![image](https://github.com/biggy2003211/Cookie-Based-Authentication/blob/master/VipMemberOrMember.png)
+
+
 【參考文章】
 * [C#][ASP.NET] Web API 開發心得 (4) - 使用 FormsAuthentication 進行 API 授權驗證
   
